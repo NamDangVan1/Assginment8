@@ -16,6 +16,7 @@ public class BookList {
     }
 
     public boolean updateBookById(String ID) {
+        boolean check = false;
         for (Book book : bookList) {
             if (book.getID().equals(ID)) {
                 if (book instanceof TextBook) {
@@ -34,13 +35,11 @@ public class BookList {
                     book.setTitle(title);
                     book.setBasePrice(basePrice);
                     ((ReferenceBook) book).setPublisher(publisher);
-                } else {
-                    return false;
                 }
-                return true;
+                check = true;
             }
         }
-        return false;
+        return check;
     }
 
     public boolean deleteBookById(String ID) {

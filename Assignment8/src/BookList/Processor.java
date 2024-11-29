@@ -3,13 +3,14 @@ package BookList;
 import java.util.Scanner;
 
 public class Processor {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         BookList bookList = new BookList();
         int choice;
-        do{
+        do {
             choice = sc.nextInt();
-            
+
             switch (choice) {
                 case 1:
                     sc.nextLine();
@@ -31,7 +32,11 @@ public class Processor {
                     break;
                 case 3:
                     String IDToUpdate = sc.next();
-                    bookList.updateBookById(IDToUpdate);
+                    if (bookList.updateBookById(IDToUpdate) == true) {
+                        System.out.println("Success");
+                    } else {
+                        System.out.println("Invalid ID");
+                    }
                     break;
                 case 4:
                     String IDToDelete = sc.next();
@@ -39,22 +44,34 @@ public class Processor {
                     break;
                 case 5:
                     String IDToFind = sc.next();
-                    bookList.findBookById(IDToFind).displayDetails();
+                    Book bookToFind = bookList.findBookById(IDToFind);
+                    if (bookToFind != null) {
+                        bookToFind.displayDetails();
+                    } else {
+                        System.out.println("Invalid ID");
+                    }
                     break;
                 case 6:
                     bookList.displayAllBooks();
                     break;
                 case 7:
-                    bookList.findMostExpensiveBook().displayDetails();
+                    Book mostExpensiveBook = bookList.findMostExpensiveBook();
+                    if (mostExpensiveBook != null) {
+                        mostExpensiveBook.displayDetails();
+                    } else {
+                        System.out.println("Invalid ID");
+                    }
                     break;
                 case 8:
                     bookList.countBooks();
                     break;
                 case 9:
                     break;
-                case 10:
+                default:
                     System.out.println("Invalid Choice!");
             }
-        } while(choice != 9);
+
+        } while (choice
+                != 9);
     }
 }

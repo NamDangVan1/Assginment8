@@ -19,7 +19,7 @@ public abstract class Book implements IBook{
     public void displayDetails() {
         System.out.println(ID);
         System.out.println(title);
-        System.out.println(basePrice);
+        System.out.println(calculatePrice());
     }
     
     double getBasePrice() {
